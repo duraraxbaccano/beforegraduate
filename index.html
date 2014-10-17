@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Activity Board</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/odometer-theme-default.css">
+	<link rel="stylesheet" href="css/onepage-scroll.css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script>
+		window.odometerOptions = {
+			format: 'd'
+		};
+	</script>
+	<script src="js/odometer.min.js"></script>
+	<script src="js/jquery.onepage-scroll.min.js"></script>
+	<style>
+	.odometer {
+		font-size: 128px;
+	}
+	.row-number {
+		margin-top: 50px;
+		margin-bottom: 50px;
+	}
+	.front-image {
+		max-width: 100%;
+		max-height: 100%;
+	}
+	.want-text {
+		font-size: 48px;
+		color: red;
+	}
+	.back {
+		padding: 10px;
+		border:dashed 5px #000000;
+		-moz-border-radius-topleft: 25px;
+		-moz-border-radius-topright:25px;
+		-moz-border-radius-bottomleft:25px;
+		-moz-border-radius-bottomright:25px;
+		-webkit-border-top-left-radius:25px;
+		-webkit-border-top-right-radius:25px;
+		-webkit-border-bottom-left-radius:25px;
+		-webkit-border-bottom-right-radius:25px;
+		border-top-left-radius:25px;
+		border-top-right-radius:25px;
+		border-bottom-left-radius:25px;
+		border-bottom-right-radius:25px;
+	}
+	</style>
+	<style class="flip">
+		/* entire container, keeps perspective */
+		.flip-container {
+			perspective: 1000;
+			-webkit-perspective: 1000;
+		}
+		/* flip the pane when hovered */
+		.flip-container:hover .flipper, .flip-container.hover .flipper {
+			transform: rotateY(180deg);
+			-webkit-transform: rotateY(180deg);
+			-moz-transform: rotateY(180deg);
+			-o-transform: rotateY(180deg);
+			-ms-transform: rotateY(180deg);
+		}
+
+		.flip-container, .front {
+			max-width: 320px;
+			max-height: 480px;
+			min-width: 150px;
+			min-height: 150px;
+		}
+		.back {
+			width: 320px;
+			height: 320px;
+		}
+
+	/* flip speed goes here */
+		.flipper {
+			transition: 0.6s;
+			-webkit-transition: 0.6s;
+			-moz-transition: 0.6s;
+			-o-transition: 0.6s;
+
+			transform-style: preserve-3d;
+			-webkit-transform-style: preserve-3d;
+
+			position: relative;
+		}
+
+		/* hide back of pane during swap */
+		.front, .back {
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		/* front pane, placed above back */
+		.front {
+			z-index: 2;
+			/* for firefox 31 */
+			transform: rotateY(0deg);
+			-webkit-transform: rotateY(0deg);
+			-moz-transform: rotateY(0deg);
+			-o-transform: rotateY(0deg);
+			-ms-transform: rotateY(0deg);
+		}
+
+		/* back, initially hidden pane */
+		.back {
+			transform: rotateY(180deg);
+			-webkit-transform: rotateY(180deg);
+			-moz-transform: rotateY(180deg);
+			-o-transform: rotateY(180deg);
+			-ms-transform: rotateY(180deg);
+		}
+	</style>
+</head>
+<script>
+	setTimeout(function() {
+		$(".year").html("2014");
+		setTimeout(function() {
+			$(".month").html("10");
+			$(".day").html("17");
+		},500)
+	},1000);
+	$(document).ready(function() {
+		$(".main").onepage_scroll({
+		   sectionContainer: "section",     // sectionContainer accepts any kind of selector in case you don't want to use section
+		   easing: "ease",                  // Easing options accepts the CSS3 easing animation such "ease", "linear", "ease-in",
+		                                    // "ease-out", "ease-in-out", or even cubic bezier value such as "cubic-bezier(0.175, 0.885, 0.420, 1.310)"
+		   animationTime: 1000,             // AnimationTime let you define how long each section takes to animate
+		   pagination: true,                // You can either show or hide the pagination. Toggle true for show, false for hide.
+		   updateURL: false,                // Toggle this true if you want the URL to be updated automatically when the user scroll to each page.
+		   beforeMove: function(index) {},  // This option accepts a callback function. The function will be called before the page moves.
+		   afterMove: function(index) {},   // This option accepts a callback function. The function will be called after the page moves.
+		   loop: false,                     // You can have the page loop back to the top/bottom when the user navigates at up/down on the first/last page.
+		   keyboard: true,                  // You can activate the keyboard controls
+		   responsiveFallback: false,        // You can fallback to normal page scroll by defining the width of the browser in which
+		                                    // you want the responsive fallback to be triggered. For example, set this to 600 and whenever
+		                                    // the browser's width is less than 600, the fallback will kick in.
+		   direction: "vertical"            // You can now define the direction of the One Page Scroll animation. Options available are "vertical" and "horizontal". The default value is "vertical".  
+		});
+	});
+</script>
+<body>
+	<div class="main">
+		<section>
+			<div class="container">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<h1 class="text-center">
+							Before I graduate ...
+						</h1>
+					</div>
+				</div>
+
+				<div class="row clearfix row-number">
+					<div class="col-md-12 column text-center">
+						<span class="odometer year">2011</span> &nbsp; 
+						<span class="odometer month">09</span> &nbsp; 
+						<span class="odometer day">20</span>
+					</div>
+				</div>
+
+				<div class="row clearfix">
+					<div class="col-md-12 column text-center">
+						<h3>Before I graduate, I want to <input type="text" class="want-input" placeholder="..."></h3>
+					</div>
+				</div>
+
+			</div>
+		</section>
+		<section>
+			<div class="container">
+				<div class="row clearfix">
+					<div class="col-md-4 column">
+						<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+							<div class="flipper">
+								<div class="front">
+									<img class="front-image img-circle" src="img/ninjakuma.png" alt="Leon">
+								</div>
+								<div class="back">
+
+									<h3>I want to </h3>
+									<h3 class="want-text">Be a Pirate!!</h3>
+								</div>
+						</div>
+					</div>
+					</div>
+
+					<div class="col-md-4 column">
+						<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+								<div class="flipper">
+									<div class="front">
+										<img class="front-image img-circle" src="img/tom.jpg" alt="Tom">
+									</div>
+									<div class="back">
+										<h3>I want to </h3>
+										<h3 class="want-text" style="color: pink;">Be Strawberry.</h3>
+									</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<section></section>
+	</div>
+</body>
+</html>
+
+<!-- 
+transform: rotate(90deg) scale(1) skew(1deg) translate(10px);
+-webkit-transform: rotate(90deg) scale(1) skew(1deg) translate(10px);
+-moz-transform: rotate(90deg) scale(1) skew(1deg) translate(10px);
+-o-transform: rotate(90deg) scale(1) skew(1deg) translate(10px);
+-ms-transform: rotate(90deg) scale(1) skew(1deg) translate(10px);
+-->
+
+<!-- 
+transition:All 1s ease;
+-webkit-transition:All 1s ease;
+-moz-transition:All 1s ease;
+-o-transition:All 1s ease;
+-->
