@@ -10,6 +10,7 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script>
 		window.odometerOptions = {
+			auto: false,
 			format: 'd'
 		};
 	</script>
@@ -120,12 +121,36 @@
 </head>
 <script>
 	setTimeout(function() {
-		$(".year").html("2014");
+		var year = document.querySelector(".year"),
+			month = document.querySelector(".month"),
+			day = document.querySelector(".day"),
+			time = new Date();
+
+		var y = new Odometer({
+		  el: year,
+		  theme: 'default'
+		});
+			
+		y.update(time.getFullYear());
+
 		setTimeout(function() {
-			$(".month").html("10");
-			$(".day").html("17");
-		},500)
-	},1000);
+
+
+			var m = new Odometer({
+			  el: month,
+			  theme: 'default'
+			});
+			
+			m.update(time.getUTCMonth() + 1);
+
+			var d = new Odometer({
+			  el: day,
+			  theme: 'default'
+			});
+			
+			d.update(time.getUTCDate());
+		}, 500);
+	}, 1000);
 	$(document).ready(function() {
 		$(".main").onepage_scroll({
 		   sectionContainer: "section",     // sectionContainer accepts any kind of selector in case you don't want to use section
@@ -159,8 +184,8 @@
 
 				<div class="row clearfix row-number">
 					<div class="col-md-12 column text-center">
-						<span class="odometer year">2011</span> &nbsp; 
-						<span class="odometer month">09</span> &nbsp; 
+						<span class="odometer year">2011</span> &nbsp; <span class="odometer">/</span> &nbsp;
+						<span class="odometer month">09</span> &nbsp; <span class="odometer">/</span> &nbsp;
 						<span class="odometer day">20</span>
 					</div>
 				</div>
